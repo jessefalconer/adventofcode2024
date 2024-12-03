@@ -1,7 +1,7 @@
 a0 = []
 a1 = []
 
-File.foreach("input.txt") do |line|
+File.foreach("day1/input.txt") do |line|
   left, right = line.split.map(&:to_i)
   a0 << left
   a1 << right
