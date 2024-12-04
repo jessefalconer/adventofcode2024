@@ -8,7 +8,7 @@ rows = crossword.row_count # length, dim_m
 
 (0..columns).each do |i|
   (0..rows).each do |j|
-    next unless crossword[i, j] == "A"
+    next unless crossword[i, j] == TARGET[1]
 
     range_up = ([i + 1, rows].min).downto([0, i - 1].max)
     range_down = ([i - 1, 0].max)..[rows, i + 1].min
