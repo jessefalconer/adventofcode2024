@@ -16,14 +16,14 @@ rows = crossword.row_count # length, dim_m
     domain_left = ([j+1, columns].min).downto([0, j - 1].max)
 
     vectors = {
-      up_right: range_up.zip(domain_right).reject { _1.nil? || _2.nil? },
-      down_right: range_down.zip(domain_right).reject { _1.nil? || _2.nil? },
-      down_left: range_down.zip(domain_left).reject { _1.nil? || _2.nil? },
-      up_left: range_up.zip(domain_left).reject { _1.nil? || _2.nil? }
+      up_right: range_up.zip(domain_right),
+      down_right: range_down.zip(domain_right),
+      down_left: range_down.zip(domain_left),
+      up_left: range_up.zip(domain_left)
     }
 
     count += 1 if vectors.each_value.count do |coords|
-      next unless coords.length == TARGET.length
+      next if coords.flatten.any?(nil)
 
       word = coords.map { crossword[_1, _2] }.join
 
