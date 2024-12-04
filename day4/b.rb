@@ -10,10 +10,10 @@ rows = crossword.row_count # length, dim_m
   (0..rows).each do |j|
     next unless crossword[i, j] == "A"
 
-    range_up = ([i+1, rows].min).downto([0, i - 1].max)
-    range_down = ([i-1, 0].max)..[rows, i + 1].min
-    domain_right = ([j-1, 0].max)..[columns, j + 1].min
-    domain_left = ([j+1, columns].min).downto([0, j - 1].max)
+    range_up = ([i + 1, rows].min).downto([0, i - 1].max)
+    range_down = ([i - 1, 0].max)..[rows, i + 1].min
+    domain_right = ([j - 1, 0].max)..[columns, j + 1].min
+    domain_left = ([j + 1, columns].min).downto([0, j - 1].max)
 
     vectors = {
       up_right: range_up.zip(domain_right),
