@@ -1,39 +1,28 @@
-OPERATORS = %i[+ * c]
-
 sum = 0
-max_permutation_size = 0
 
-equations = File.readlines("day7/input.txt", chomp: true).map do |line|
-  answer, operands = line.split(":")
-  operands = operands.strip.split(" ").map(&:to_i)
-  max_permutation_size = [max_permutation_size, operands.size - 1].max
+File.readlines("day7/input.txt", chomp: true).each do |line|
+  answer, operand = line.split(":")
+  answer = answer.to_i
+  operands = operand.strip.split.map(&:to_i)
+  result = [operands.shift]
 
-  [answer.to_i, operands]
-end
-permutation_hash = {}
+  operands.each do |operand|
+    permutation_results = []
 
-(1..max_permutation_size).each do |size|
-  permutation_hash[size] = OPERATORS.repeated_permutation(size).to_a
-end
+    result.each do |viable_number|
+      current_sum = viable_number + operand
+      current_product = viable_number * operand
+      current_concatenation = (viable_number.to_s + operand.to_s).to_i
 
-equations.each do |answer, operands|
-  permutation_hash[operands.size - 1].each do |permutation|
-    equation = operands.zip(permutation).flatten.compact
-    result = equation[0]
-
-    (1..equation.size - 1).step(2) do |index|
-      operator = equation[index]
-      operand = equation[index + 1]
-
-      if operator == :c
-        result = (result.to_s + operand.to_s).to_i
-      else
-        result = result.send(operator, operand)
-      end
+      permutation_results << current_sum unless current_sum > answer
+      permutation_results << current_product unless current_product > answer
+      permutation_results << current_concatenation unless current_concatenation > answer
     end
 
-    break sum += result if result == answer
+    result = permutation_results
   end
+
+  sum += answer if result.include?(answer)
 end
 
 puts sum
