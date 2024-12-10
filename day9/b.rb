@@ -1,16 +1,14 @@
-total_chars = 0
-free_indexes = {}
-char_indexes = {}
-last_free_index = nil
-
 disk_line = File.read("day9/input.txt").chars.flat_map.with_index do |char, index|
   if index.even?
-    total_chars += 1
     Array.new(char.to_i, (index / 2).to_s)
   else
     Array.new(char.to_i, ".")
   end
 end
+
+free_indexes = {}
+char_indexes = {}
+last_free_index = nil
 
 disk_line.each_with_index do |char, index|
   if char == "."
