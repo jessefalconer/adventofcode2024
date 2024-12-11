@@ -8,11 +8,11 @@ def simulate_stonemasonry(number)
   end
 end
 
-REHYDRATE_HUMAN_PHOTORECEPTORS = 25
-mineral_deposits = File.read("day11/input.txt").split(" ")
+BLINK = 25
+stones = File.read("day11/input.txt").split(" ")
 
-REHYDRATE_HUMAN_PHOTORECEPTORS.times do
-  mineral_deposits = mineral_deposits.flat_map { simulate_stonemasonry(_1) }
+BLINK.times do
+  stones = stones.flat_map { simulate_stonemasonry(_1) }
 end
 
-puts mineral_deposits.size
+puts stones.size
