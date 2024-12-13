@@ -1,5 +1,4 @@
 require "matrix"
-require "set"
 
 # INPUT_FILE = "day13/input.txt"
 INPUT_FILE = "day13/sample.txt"
