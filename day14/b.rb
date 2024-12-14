@@ -3,7 +3,7 @@ require "matrix"
 INPUT_FILE = "day14/input.txt"
 ROW_COUNT, COL_COUNT = 103, 101
 BOARD = Matrix.build(ROW_COUNT, COL_COUNT) { "." }
-SECONDS = 103
+SECONDS = ROW_COUNT * COL_COUNT
 ROBOTS = File.readlines(INPUT_FILE, chomp: true).map do |line|
   x0, y0, vx, vy = line.match(/p=(\-?\d+),(\-?\d+) v=(\-?\d+),(\-?\d+)/)[1..4].map(&:to_i)
 
