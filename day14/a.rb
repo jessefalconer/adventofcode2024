@@ -9,7 +9,7 @@ ne_count = 0
 sw_count = 0
 se_count = 0
 
-ROBOTS = File.readlines(INPUT_FILE, chomp: true).map do |line|
+File.readlines(INPUT_FILE, chomp: true).map do |line|
   x0, y0, vx, vy = line.match(/p=(\-?\d+),(\-?\d+) v=(\-?\d+),(\-?\d+)/)[1..4].map(&:to_i)
 
   x1 = (x0 + (vx * SECONDS)) % COL_COUNT
